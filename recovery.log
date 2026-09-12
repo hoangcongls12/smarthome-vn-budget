@@ -1,0 +1,30 @@
+﻿[15:21:19] [STEP] ============================================
+[15:21:19] [STEP]   RECOVERY AGENT - AUTO-FIXING ISSUES
+[15:21:19] [STEP] ============================================
+[15:21:19] [STEP] FIX 1: Restoring PATH...
+[15:21:19] [FIX] PATH restored: C:\Program Files\nodejs\ C:\Program Files\GitHub CLI\ C:\Program Files\Git\cmd
+[15:21:19] [STEP] FIX 2: Verifying tools...
+[15:21:19] [FIX] git OK
+[15:21:19] [FIX] node OK
+[15:21:20] [FIX] npm OK
+[15:21:20] [FIX] gh OK
+[15:21:20] [STEP] FIX 3: Ensuring GitHub repo exists...
+[15:21:21] [FIX] Repo exists
+[15:21:21] [STEP] FIX 4: Verifying Cloudflare token permissions...
+[15:21:21] [FIX] Token can list accounts
+[15:21:21] [STEP] FIX 5: Setting GitHub Secrets...
+[15:21:21] [INFO] Setting secret: GITHUB_PAT
+[15:21:23] [FIX] Secret GITHUB_PAT set
+[15:21:23] [INFO] Setting secret: CLOUDFLARE_API_TOKEN
+[15:21:24] [FIX] Secret CLOUDFLARE_API_TOKEN set
+[15:21:24] [INFO] Setting secret: CLOUDFLARE_ACCOUNT_ID
+[15:21:25] [FIX] Secret CLOUDFLARE_ACCOUNT_ID set
+[15:21:25] [STEP] FIX 6: Creating Cloudflare Pages project...
+[15:21:26] [ERROR] Pages project failed: The remote server returned an error: (403) Forbidden.
+[15:21:26] [FIX] ============================================
+[15:21:26] [FIX]   RECOVERY COMPLETE
+[15:21:26] [FIX] ============================================
+[15:21:26] [INFO] Next steps:
+[15:21:26] [INFO] 1. Check Cloudflare Pages dashboard for deployment status
+[15:21:26] [INFO] 2. Verify live site: https://smarthome-vn-budget.pages.dev
+[15:21:26] [INFO] 3. Run operations-agent.ps1 -RunOnce to verify

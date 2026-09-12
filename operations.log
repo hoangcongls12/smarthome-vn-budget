@@ -1,0 +1,48 @@
+﻿[13:20:45] [STEP] ============================================
+[13:20:45] [STEP]   OPERATIONS AGENT - 12/09/2026 13:20
+[13:20:45] [STEP] ============================================
+[13:20:45] [STEP] Checking site uptime...
+[13:20:45] [ERROR] URL https://smarthome-vn-budget.pages.dev unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [ERROR] URL https://smarthome-vn-budget.pages.dev/404.html unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [ERROR] URL https://smarthome-vn-budget.pages.dev/rss.xml unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [ERROR] URL https://smarthome-vn-budget.pages.dev/sitemap-index.xml unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [STEP] Checking GitHub Actions...
+[13:20:45] [WARN] GitHub Actions check failed: The term 'gh' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[13:20:45] [STEP] Checking affiliate link redirects...
+[13:20:45] [ERROR] Affiliate link sonoff-zbdongle-e failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [ERROR] Affiliate link xiaomi-smart-bulb failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [ERROR] Affiliate link aqara-motion-sensor failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [ERROR] Affiliate link sonoff-mini-r4 failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [ERROR] Affiliate link raspberry-pi-4-4gb failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:45] [STEP] Checking content freshness...
+[13:20:45] [INFO] Content check: 3 articles
+[13:20:45] [STEP] Checking disk space...
+[13:20:46] [INFO] Disk D: 259.08 GB free ( percent used)
+[13:20:46] [STEP] Checking SSL certificate...
+[13:20:46] [WARN] SSL check failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:20:46] [STEP] Generating daily report...
+[13:20:46] [INFO] Daily report generated
+[13:20:46] [STEP] Cycle completed.
+[13:22:19] [STEP] ============================================
+[13:22:19] [STEP]   OPERATIONS AGENT - 12/09/2026 13:22
+[13:22:19] [STEP] ============================================
+[13:22:19] [STEP] Checking site uptime...
+[13:22:19] [ERROR] URL https://smarthome-vn-budget.pages.dev unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [ERROR] URL https://smarthome-vn-budget.pages.dev/404.html unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [ERROR] URL https://smarthome-vn-budget.pages.dev/rss.xml unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [ERROR] URL https://smarthome-vn-budget.pages.dev/sitemap-index.xml unreachable: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [STEP] Checking GitHub Actions...
+[13:22:19] [STEP] Checking affiliate link redirects...
+[13:22:19] [ERROR] Affiliate link sonoff-zbdongle-e failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [ERROR] Affiliate link xiaomi-smart-bulb failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [ERROR] Affiliate link aqara-motion-sensor failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [ERROR] Affiliate link sonoff-mini-r4 failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [ERROR] Affiliate link raspberry-pi-4-4gb failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:19] [STEP] Checking content freshness...
+[13:22:19] [INFO] Content check: 3 articles
+[13:22:19] [STEP] Checking disk space...
+[13:22:20] [STEP] Checking SSL certificate...
+[13:22:20] [WARN] SSL check failed: The remote name could not be resolved: 'smarthome-vn-budget.pages.dev'
+[13:22:20] [STEP] Generating daily report...
+[13:22:20] [INFO] Daily report generated
+[13:22:20] [STEP] Cycle completed.

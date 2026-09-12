@@ -1,0 +1,44 @@
+﻿[12:53:25] [STEP] AGENT-1: Installing prerequisites...
+[12:53:25] [STEP] [Check Git] Attempt 1/1
+[12:53:27] [WARN] [Check Git] Attempt 1 failed: The term 'git --version' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[12:53:27] [ERROR] [Check Git] FAILED after 1 attempts
+[12:53:27] [STEP] Installing Git...
+[12:55:37] [STEP] [Check Node.js] Attempt 1/1
+[12:55:37] [WARN] [Check Node.js] Attempt 1 failed: The term 'node --version' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[12:55:37] [ERROR] [Check Node.js] FAILED after 1 attempts
+[12:55:37] [STEP] Installing Node.js...
+[12:56:22] [STEP] [Check GitHubCLI] Attempt 1/1
+[12:56:22] [WARN] [Check GitHubCLI] Attempt 1 failed: The term 'gh --version' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[12:56:22] [ERROR] [Check GitHubCLI] FAILED after 1 attempts
+[12:56:22] [STEP] Installing GitHubCLI...
+[12:56:39] [STEP] ============================================
+[12:56:39] [STEP]   SMART HOME VN BUDGET - FULL AUTO DEPLOY
+[12:56:39] [STEP] ============================================
+[12:56:40] [INFO] Resuming from: Prerequisites [Completed]
+[12:56:40] [INFO] Skipping Prerequisites - already completed
+[12:56:40] [STEP] [GitHubAuth] Attempt 1/3
+[12:56:40] [STEP] AGENT-2: GitHub Authentication...
+[12:56:40] [INFO] Authenticated as: hoangcongls12
+[12:56:40] [INFO] [GitHubAuth] Success
+[12:56:40] [STEP] [GitOps] Attempt 1/3
+[12:56:40] [STEP] AGENT-3: Git Operations...
+[12:56:41] [INFO] Repo exists, pushing...
+[12:56:41] [INFO] [GitOps] Success
+[12:56:41] [STEP] [CloudflareDeploy] Attempt 1/3
+[12:56:41] [STEP] AGENT-4: Cloudflare Pages Deployment...
+[12:56:41] [WARN] Cloudflare credentials missing - skipping auto deploy
+[12:56:41] [INFO] [CloudflareDeploy] Success
+[12:56:41] [STEP] [CICDSetup] Attempt 1/3
+[12:56:41] [STEP] AGENT-5: GitHub Actions CI/CD Setup...
+[12:56:41] [INFO] [CICDSetup] Success
+[12:56:41] [STEP] [Verification] Attempt 1/3
+[12:56:41] [STEP] AGENT-6: Verification & Health Check...
+[12:56:48] [INFO] Build output verified
+[12:56:48] [INFO] GitHub Repo: https://github.com/hoangcongls12/smarthome-vn-budget
+[12:56:48] [INFO] [Verification] Success
+[12:56:48] [STEP] ============================================
+[12:56:48] [STEP]   DEPLOYMENT COMPLETED SUCCESSFULLY!
+[12:56:48] [STEP] ============================================
+[12:56:48] [INFO] GitHub: https://github.com/hoangcongls12/smarthome-vn-budget
+[12:56:48] [INFO] Live URL: https://smarthome-vn-budget.pages.dev
+[12:56:48] [INFO] Local Dev: npm run dev (http://localhost:4321)

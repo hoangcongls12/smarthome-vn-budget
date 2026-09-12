@@ -1,0 +1,15 @@
+﻿[13:33:46] [ERROR] Missing required parameters:
+[13:33:46] [ERROR]   - Cloudflare API Token
+[13:33:46] [ERROR]   - Cloudflare Account ID
+[13:33:46] [INFO] Set via environment variables:
+[13:33:46] [INFO]   $env:CLOUDFLARE_API_TOKEN="your_token"
+[13:33:46] [INFO]   $env:CLOUDFLARE_ACCOUNT_ID="your_account_id"
+[14:13:38] [STEP] Step 1/5: Setting GitHub Secrets...
+[14:13:38] [INFO] Setting secret: GITHUB_PAT
+[14:13:39] [WARN] Secret GITHUB_PAT failed, set manually in GitHub Settings > Secrets > Actions
+[14:13:39] [INFO] Setting secret: CLOUDFLARE_API_TOKEN
+[14:13:41] [WARN] Secret CLOUDFLARE_API_TOKEN failed, set manually in GitHub Settings > Secrets > Actions
+[14:13:41] [INFO] Setting secret: CLOUDFLARE_ACCOUNT_ID
+[14:13:42] [WARN] Secret CLOUDFLARE_ACCOUNT_ID failed, set manually in GitHub Settings > Secrets > Actions
+[14:13:42] [STEP] Step 2/5: Creating Cloudflare Pages Project...
+[14:13:43] [ERROR] API Error: The remote server returned an error: (403) Forbidden.
