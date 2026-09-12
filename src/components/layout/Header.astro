@@ -1,0 +1,87 @@
+// src/components/layout/Header.astro
+---
+import { SITE_CONFIG } from '../../data/site';
+import Button from '../../components/ui/Button.astro';
+import AnchorLink from '../../components/ui/AnchorLink.astro';
+---
+
+<header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100">
+  <nav class="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <AnchorLink href="/" class="flex items-center gap-2" aria-label={`${SITE_CONFIG.name} - Trang chá»§`}>
+        <svg class="h-8 w-8 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span class="font-bold text-xl text-gray-900 hidden sm:block">{SITE_CONFIG.shortName}</span>
+        <span class="font-bold text-xl text-gray-900 sm:hidden">{SITE_CONFIG.name}</span>
+      </AnchorLink>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:gap-8">
+        {SITE_CONFIG.navigation.map((item) => (
+          <AnchorLink
+            href={item.href}
+            class="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors relative py-2 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary-600 after:scale-x-0 after:origin-bottom-right hover:after:scale-x-100 after:transition-transform"
+          >
+            {item.label}
+          </AnchorLink>
+        ))}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+        aria-label="Má»Ÿ menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="md:hidden hidden overflow-hidden transition-all duration-300 ease-in-out" role="navigation" aria-label="Mobile navigation">
+      <div class="py-4 space-y-2 border-t border-gray-100">
+        {SITE_CONFIG.navigation.map((item) => (
+          <AnchorLink
+            href={item.href}
+            class="block px-2 py-3 text-base font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
+          >
+            {item.label}
+          </AnchorLink>
+        ))}
+        <div class="pt-4 border-t border-gray-100">
+          <Button variant="primary" class="w-full" href="/budget-build">
+            Báº¯t Ä‘áº§u Budget Build
+          </Button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Script -->
+  <script is:inline>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !isExpanded);
+        menu.classList.toggle('hidden');
+        
+        // Animate height
+        if (!isExpanded) {
+          menu.style.maxHeight = menu.scrollHeight + 'px';
+        } else {
+          menu.style.maxHeight = '0';
+        }
+      });
+    }
+  </script>
+</header>

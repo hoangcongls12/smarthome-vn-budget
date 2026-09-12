@@ -1,0 +1,47 @@
+// src/components/ui/Card.astro
+---
+const {
+  children,
+  class: className = '',
+  href,
+  padded = true,
+  bordered = true,
+  shadow = 'hover',
+  ...attrs
+} = Astro.props;
+
+const paddingClass = padded ? 'p-6' : '';
+const borderClass = bordered ? 'border border-gray-100' : '';
+const shadowClasses = {
+  none: '',
+  sm: 'shadow-sm',
+  md: 'shadow-md',
+  lg: 'shadow-lg',
+  xl: 'shadow-xl',
+  hover: 'transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
+};
+
+const isLink = !!href;
+const Tag = isLink ? 'a' : 'article';
+---
+
+<Tag
+  href={isLink ? href : undefined}
+  class={`bg-white rounded-2xl overflow-hidden ${paddingClass} ${borderClass} ${shadowClasses[shadow]} ${className}`}
+  target={isLink && href.startsWith('http') && !href.includes('smarthomevn.pages.dev') ? '_blank' : undefined}
+  rel={isLink && href.startsWith('http') && !href.includes('smarthomevn.pages.dev') ? 'noopener noreferrer' : undefined}
+  {...attrs}
+>
+  <slot />
+</Tag>
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+</style>

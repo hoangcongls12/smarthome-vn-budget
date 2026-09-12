@@ -1,0 +1,47 @@
+// src/components/ui/Image.astro
+---
+const {
+  src,
+  alt = '',
+  width,
+  height,
+  class: className = '',
+  loading = 'lazy',
+  decoding = 'async',
+  format = 'avif',
+  quality = 80,
+  ...attrs
+} = Astro.props;
+
+const isExternal = src.startsWith('http') || src.startsWith('//');
+const imageSrc = isExternal ? src : `/images/${src}`;
+---
+
+<picture>
+  {format !== 'original' && (
+    <source type={`image/${format}`} srcSet={`${imageSrc}?format=${format}&w=${width}&q=${quality}`} />
+  )}
+  {width && height && (
+    <source
+      type="image/webp"
+      srcSet={`${imageSrc}?w=${width}&h=${height}&fit=cover&q=${quality} ${width}w`}
+      sizes={`(max-width: ${width}px) 100vw, ${width}px`}
+    />
+  )}
+  <img
+    src={imageSrc}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    class={className}
+    {...attrs}
+  />
+</picture>
+
+<style>
+  img {
+    @apply max-w-full h-auto;
+  }
+</style>

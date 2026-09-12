@@ -1,0 +1,21 @@
+// src/components/ui/AnchorLink.astro
+---
+const { children, href, class: className = '', ...attrs } = Astro.props;
+const isExternal = href.startsWith('http') && !href.includes('smarthomevn.pages.dev');
+---
+
+<a
+  href={href}
+  class={className}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+  {...attrs}
+>
+  <slot />
+</a>
+
+<style>
+  a {
+    @apply text-primary-600 hover:text-primary-700 underline-offset-2 hover:underline transition-colors;
+  }
+</style>

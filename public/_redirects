@@ -1,0 +1,23 @@
+# Cloudflare Pages Redirects
+# Place in public/_redirects
+
+# Affiliate link cloaking
+/go/:slug   /api/redirect/:slug   302
+
+# Trailing slash enforcement (handled by Astro config)
+# /blog/:slug   /blog/:slug/   301
+
+# Legacy URL redirects (if migrating from old site)
+# /old-url   /new-url   301
+
+# Search
+/search   /search/   301
+
+# Sitemap
+/sitemap.xml   /sitemap-index.xml   301
+
+# RSS
+/rss.xml   /rss.xml   301
+
+# 404 fallback (handled by 404.astro)
+# /*   /404.html   404

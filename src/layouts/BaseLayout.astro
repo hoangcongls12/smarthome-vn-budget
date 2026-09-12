@@ -1,0 +1,105 @@
+---
+import type { SEOProps } from '../utils/seo';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/ui/SEO.astro';
+import { SITE } from '../utils/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  twitterCard?: 'summary' | 'summary_large_image';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  section?: string;
+  tags?: string[];
+  noindex?: boolean;
+  nofollow?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType = 'website',
+  twitterCard = 'summary_large_image',
+  publishedTime,
+  modifiedTime,
+  author,
+  section,
+  tags,
+  noindex,
+  nofollow,
+  jsonLd,
+} = Astro.props;
+
+const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const canonicalUrl = canonical ? `${SITE.url}${canonical}` : Astro.url.href;
+const ogImageUrl = ogImage ? `${SITE.url}${ogImage}` : SITE.ogImage;
+---
+
+<!doctype html>
+<html lang="vi-VN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- SEO Component -->
+    <SEO
+      title={fullTitle}
+      description={description}
+      canonical={canonicalUrl}
+      ogImage={ogImageUrl}
+      ogType={ogType}
+      twitterCard={twitterCard}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      author={author}
+      section={section}
+      tags={tags}
+      noindex={noindex}
+      nofollow={nofollow}
+      jsonLd={jsonLd}
+    />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+    
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a href="#main-content" class="skip-link">Bỏ qua đến nội dung chính</a>
+    
+    <Header />
+    
+    <main id="main-content" class="flex-1" role="main">
+      <slot />
+    </main>
+    
+    <Footer />
+    
+    <!-- Analytics -->
+    <script is:inline>
+      // GA4
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); // Thay bằng GA4 Measurement ID thực
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    
+    <!-- Umami Analytics (Self-hosted) -->
+    <script defer src="https://analytics.smarthomevn.pages.dev/script.js" data-website-id="YOUR_WEBSITE_ID"></script>
+  </body>
+</html>

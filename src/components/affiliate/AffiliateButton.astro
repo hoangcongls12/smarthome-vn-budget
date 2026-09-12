@@ -1,0 +1,126 @@
+// src/components/affiliate/AffiliateButton.astro
+---
+import { createAffiliateLink, SAMPLE_AFFILIATE_LINKS } from '@data/affiliate';
+import Button from '@components/ui/Button.astro';
+import Badge from '@components/ui/Badge.astro';
+import { cn } from '@utils/helpers';
+
+interface Props {
+  linkId?: string;
+  program?: keyof typeof import('@data/affiliate').AFFILIATE_PROGRAMS;
+  productPath?: string;
+  productName: string;
+  price?: number;
+  originalPrice?: number;
+  badge?: 'Best Seller' | 'Budget Pick' | 'Premium' | 'New';
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  showPrice?: boolean;
+  showBadge?: boolean;
+  customParams?: Record<string, string>;
+  // Direct link props (for non-sample links)
+  directUrl?: string;
+  directProgram?: string;
+}
+
+const {
+  linkId,
+  program,
+  productPath,
+  productName,
+  price,
+  originalPrice,
+  badge,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  showPrice = true,
+  showBadge = true,
+  customParams = {},
+  directUrl,
+  directProgram,
+} = Astro.props;
+
+// Resolve link
+let affiliateUrl: string;
+let resolvedProgram: string;
+
+if (linkId) {
+  const sampleLink = SAMPLE_AFFILIATE_LINKS.find((l) => l.id === linkId);
+  if (sampleLink) {
+    affiliateUrl = sampleLink.affiliateUrl;
+    resolvedProgram = sampleLink.program;
+  } else {
+    affiliateUrl = '#';
+    resolvedProgram = 'unknown';
+  }
+} else if (directUrl && directProgram) {
+  affiliateUrl = createAffiliateLink(directProgram as any, directUrl, customParams);
+  resolvedProgram = directProgram;
+} else if (program && productPath) {
+  affiliateUrl = createAffiliateLink(program, productPath, customParams);
+  resolvedProgram = program;
+} else {
+  affiliateUrl = '#';
+  resolvedProgram = 'unknown';
+}
+
+// Create cloaked link for tracking
+const cloakedLink = `/go/${linkId || slugify(productName)}`;
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[đ]/g, 'd')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+---
+
+<div class={cn('flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl', className)}>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center gap-2 mb-1">
+      <span class="font-semibold text-gray-900 truncate">{productName}</span>
+      {showBadge && badge && (
+        <Badge variant={badge === 'Best Seller' ? 'primary' : badge === 'Budget Pick' ? 'success' : badge === 'Premium' ? 'accent' : 'warning'}>
+          {badge}
+        </Badge>
+      )}
+    </div>
+    {showPrice && (price || originalPrice) && (
+      <div class="flex items-center gap-2 text-sm">
+        {price && (
+          <span class="font-bold text-primary-600">
+            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', minimumFractionDigits: 0 }).format(price)}
+          </span>
+        )}
+        {originalPrice && price && originalPrice > price && (
+          <span class="text-gray-400 line-through">
+            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', minimumFractionDigits: 0 }).format(originalPrice)}
+          </span>
+        )}
+        {originalPrice && price && originalPrice > price && (
+          <Badge variant="danger" class="text-xs">
+            -{Math.round((1 - price / originalPrice) * 100)}%
+          </Badge>
+        )}
+      </div>
+    )}
+  </div>
+  <Button
+    href={cloakedLink}
+    variant={variant}
+    size={size}
+    class="w-full sm:w-auto whitespace-nowrap"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+    </svg>
+    Xem chi tiết
+  </Button>
+</div>

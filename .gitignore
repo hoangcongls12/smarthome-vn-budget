@@ -1,0 +1,14 @@
+# Astro
+.env
+.env.*
+!.env.example
+
+# Cloudflare Pages
+.wrangler
+dist
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo

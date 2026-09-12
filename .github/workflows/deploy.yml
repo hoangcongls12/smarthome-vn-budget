@@ -1,0 +1,87 @@
+# GitHub Actions CI/CD for Cloudflare Pages
+# Place in .github/workflows/deploy.yml
+
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+env:
+  NODE_VERSION: '20'
+  CLOUDFLARE_PAGES_PROJECT_NAME: smarthome-vn-budget
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run format check
+        run: npm run format -- --check
+
+      - name: Type check
+        run: npx astro check
+
+      - name: Build Astro site
+        run: npm run build
+        env:
+          SITE_URL: https://${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}.pages.dev
+          GA4_MEASUREMENT_ID: ${{ secrets.GA4_MEASUREMENT_ID }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+          UMAMI_SCRIPT_URL: ${{ secrets.UMAMI_SCRIPT_URL }}
+          SHOPEE_AFFILIATE_ID: ${{ secrets.SHOPEE_AFFILIATE_ID }}
+          LAZADA_AFFILIATE_ID: ${{ secrets.LAZADA_AFFILIATE_ID }}
+          AMAZON_ASSOCIATES_TAG: ${{ secrets.AMAZON_ASSOCIATES_TAG }}
+          GEARVN_REF: ${{ secrets.GEARVN_REF }}
+          ANPHUOC_REF: ${{ secrets.ANPHUOC_REF }}
+          ALIEXPRESS_AFF_FID: ${{ secrets.ALIEXPRESS_AFF_FID }}
+
+      - name: Deploy to Cloudflare Pages (Preview)
+        if: github.event_name == 'pull_request'
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          directory: dist
+          branch: preview-${{ github.event.number }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to Cloudflare Pages (Production)
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          directory: dist
+          branch: production
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          echo "Deployment ${{ job.status }}"
+          echo "Preview URL: https://preview-${{ github.event.number }}.${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}.pages.dev"
+          echo "Production URL: https://${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}.pages.dev"

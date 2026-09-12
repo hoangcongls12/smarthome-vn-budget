@@ -1,0 +1,62 @@
+---
+const {
+  children,
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  type = 'button',
+  disabled = false,
+  ...attrs
+} = Astro.props;
+
+const variants = {
+  primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-sm hover:shadow-md',
+  secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-500 border border-gray-200',
+  accent: 'bg-accent-600 text-white hover:bg-accent-700 focus:ring-accent-500 shadow-sm hover:shadow-md',
+  outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500',
+  ghost: 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:ring-gray-500',
+};
+
+const sizes = {
+  sm: 'px-3 py-1.5 text-xs',
+  md: 'px-5 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+};
+
+const baseClasses = 'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+
+const isLink = !!href;
+---
+
+{isLink ? (
+  <a
+    href={href}
+    class={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
+    target={href.startsWith('http') && !href.includes('smarthomevn.pages.dev') ? '_blank' : undefined}
+    rel={href.startsWith('http') && !href.includes('smarthomevn.pages.dev') ? 'noopener noreferrer' : undefined}
+    {...attrs}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    disabled={disabled}
+    class={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
+    {...attrs}
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+</style>

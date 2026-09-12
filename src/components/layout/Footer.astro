@@ -1,0 +1,108 @@
+---
+import { SITE_CONFIG } from '../../data/site';
+import AnchorLink from '../../components/ui/AnchorLink.astro';
+---
+
+<footer class="bg-gray-50 border-t border-gray-100" role="contentinfo">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <AnchorLink href="/" class="flex items-center gap-2 mb-4" aria-label={`${SITE_CONFIG.name} - Trang chu`}>
+          <svg class="h-8 w-8 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="font-bold text-xl text-gray-900">{SITE_CONFIG.name}</span>
+        </AnchorLink>
+        <p class="text-gray-600 text-sm leading-relaxed max-w-xs mb-6">
+          {SITE_CONFIG.description}
+        </p>
+        <div class="flex gap-4">
+          {Object.entries(SITE_CONFIG.social).map(([platform, url]) => (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 hover:text-primary-600 transition-colors"
+              aria-label={platform}
+            >
+              {platform === 'github' && (
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+              )}
+              {platform === 'twitter' && (
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              )}
+              {platform === 'facebook' && (
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.992 3.872 10.989 9.18 11.72v-8.359H6.89V12h2.29V8.515c0-2.256 1.374-3.484 3.386-3.484.966 0 1.792.072 2.035.105v2.26h-1.386c-1.091 0-1.296.503-1.296 1.24V12h2.74l-.44 2.853H14V24c5.309-.731 9.18-5.728 9.18-11.72z"/>
+                </svg>
+              )}
+              {platform === 'youtube' && (
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              )}
+              {platform === 'tiktok' && (
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.516 2.383c-2.928 0-5.4 2.471-5.4 5.516v11.44c0 2.928 2.471 5.4 5.4 5.4 1.501 0 2.85-.63 3.823-1.601.195-.196.388-.39.576-.58.003.19.173.343.36.343.185 0 .357-.148.392-.332.05-.264.275-.541.627-.718v-1.077c-.26.158-.54.29-.83.29-.974 0-1.786-.77-1.786-1.74 0-.978.833-1.74 1.848-1.74.52 0 .967.205 1.295.53.164.16.342.31.53.443.084-.118.235-.245.408-.352C16.88 15.083 17 14.717 17 14.285c0-.942-.764-1.718-1.718-1.718-.467 0-.883.19-1.197.502-.188.188-.394.35-.606.488v-.58c.268-.177.508-.384.718-.612.167-.18.28-.378.36-.59l.282-.74c.098-.266.004-.546-.24-.747-.314-.26-.704-.422-1.117-.422-.743 0-1.35.598-1.35 1.348v.517c0 .434.22.818.55 1.05.176.12.36.222.55.3.155.06.314.106.476.136v.648c-.238-.046-.48-.065-.722-.065-.655 0-1.197.528-1.197 1.186 0 .657.53 1.197 1.188 1.197.674 0 1.228-.52 1.394-1.182.015-.06.044-.12.07-.18zM6.117 7.816c0-.644.546-1.178 1.218-1.178.666 0 1.206.527 1.206 1.178v8.45c0 .645-.54 1.178-1.206 1.178-.672 0-1.218-.533-1.218-1.178V7.816zm11.766 0c0-.644.546-1.178 1.218-1.178.666 0 1.206.527 1.206 1.178v3.553l.024 3.482c0 .644-.54 1.178-1.206 1.178-.672 0-1.218-.534-1.218-1.178v-4.78l-.024-1.762c0-.47-.392-.858-.874-.858-.486 0-.874.388-.874.858v1.762l-.024 3.02c0 .645-.54 1.178-1.206 1.178-.672 0-1.218-.533-1.218-1.178V7.816z"/>
+                </svg>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Navigation Columns -->
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-4">Danh muc</h3>
+        <ul class="space-y-3" role="list">
+          {SITE_CONFIG.categories.map((cat) => (
+            <li>
+              <AnchorLink
+                href={`/${cat.slug}`}
+                class="text-sm text-gray-600 hover:text-primary-600 transition-colors flex items-center gap-2"
+              >
+                <span class="text-base">{cat.icon}</span>
+                {cat.name}
+              </AnchorLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-4">Ho tro</h3>
+        <ul class="space-y-3" role="list">
+          <li><AnchorLink href="/about" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">Ve chung toi</AnchorLink></li>
+          <li><AnchorLink href="/contact" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">Lien he</AnchorLink></li>
+          <li><AnchorLink href="/privacy" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">Chinh sach bao mat</AnchorLink></li>
+          <li><AnchorLink href="/terms" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">Dieu khoan su dung</AnchorLink></li>
+          <li><AnchorLink href="/disclaimer" class="text-sm text-gray-600 hover:text-primary-600 transition-colors"> Tuyen bo tu choi trach nhiem</AnchorLink></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-4">Affiliate Disclosure</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          {SITE_CONFIG.affiliate.disclaimer}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. Moi quyen duoc bao luu.
+        </p>
+        <p class="text-sm text-gray-500">
+          Xay dung voi <span class="text-red-500">â™¥</span> bang Astro & Tailwind CSS
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

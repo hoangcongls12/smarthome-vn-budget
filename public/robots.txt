@@ -1,0 +1,23 @@
+# robots.txt
+# Generated automatically by @astrojs/sitemap
+# Place in public/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin/private paths
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /go/
+Disallow: /search/
+Disallow: /tag/
+Disallow: /author/
+
+# Sitemap
+Sitemap: https://smarthomevn.pages.dev/sitemap-index.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 10
+
+# Host
+Host: https://smarthomevn.pages.dev
